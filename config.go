@@ -76,17 +76,20 @@ func getDefaultProfile() Profile {
 }
 
 func getUserConfig() (Config, error) {
-	var configFile string
+	var appConfigFile, cwdConfigFile, envConfigFile, configFile string
 
-	cwdConfigFile := fmt.Sprintf("%s.json", APP_NAME)
-	envConfigFile := os.Getenv("BRAINDUMP_CONFIG_FILE")
+	cwdConfigFile = fmt.Sprintf("%s.json", APP_NAME)
+	envConfigFile = os.Getenv("BRAINDUMP_CONFIG_FILE")
+
+	appConfigFile = os.ExpandEnv(APP_CONFIG_FILE)
+	envConfigFile = os.ExpandEnv(envConfigFile)
 
 	if fileExists(cwdConfigFile) {
 		configFile = cwdConfigFile
 	} else if envConfigFile != "" {
 		configFile = envConfigFile
 	} else {
-		configFile = APP_CONFIG_FILE
+		configFile = appConfigFile
 	}
 
 	if fileExists(configFile) {
