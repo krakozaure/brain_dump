@@ -1,7 +1,7 @@
 # brain\_dump
 
-`brain_dump` allows to quickly dump notes, todos, snippets, ... in text files
-using Golang `text/template` and functions from the Sprig project.
+`brain_dump` allows to quickly write notes, todos, snippets, etc. in text files
+using Golang [text/template](https://pkg.go.dev/text/template) and functions from the [Sprig](https://masterminds.github.io/sprig/) project.
 
 ## Project status
 
@@ -62,7 +62,7 @@ Here is the default configuration ( `brain_dump -c` ) :
 }
 ```
 
-Here is an example for bash configuration :
+Here is an example of bash configuration :
 
 ```sh
 if command -v brain_dump &> /dev/null; then
@@ -72,6 +72,7 @@ if command -v brain_dump &> /dev/null; then
   alias snip='brain_dump -p snip'
   alias todo='brain_dump -p todo'
   export BRAINDUMP_CONFIG_HOME="$HOME/.config/brain_dump"
+  export BRAINDUMP_CONFIG_FILE="$BRAINDUMP_CONFIG_HOME/brain_dump.json"
   export BRAINDUMP_DATA_HOME="$HOME/Documents/brain_dump"
   export BRAINDUMP_DEBUG=1
 fi
