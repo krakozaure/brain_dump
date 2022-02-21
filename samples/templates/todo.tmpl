@@ -1,0 +1,17 @@
+---
+
+```yaml
+cdate: {{ .datetime }}
+mdate: {{ .datetime }}
+state: {{ if .state }}{{ .state }}{{ else }}todo{{ end }}
+{{- if .project }}
+project: {{ .project }}
+{{- end }}
+{{- if .tags }}
+tags: [ {{ .tags }} ]
+{{- end }}
+```
+{{ range (split "|" .input) }}
+- [ ] {{ (trim .) -}}
+{{ end }}
+

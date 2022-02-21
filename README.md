@@ -39,7 +39,7 @@ $ brain_dump -e the quick brown fox jumps over the lazy dog.
 
 ## Configuration
 
-Configuration and template samples can be found in `./.config/brain_dump/`.
+Configuration and template samples can be found in `./samples/`.
 
 Here is the default configuration ( `brain_dump -c` ) :
 

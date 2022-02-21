@@ -1,0 +1,18 @@
+---
+
+```yaml
+cdate: {{ .datetime }}
+{{- if .tags }}
+tags: [ {{ .tags }} ]
+{{- end }}
+{{- if .lang }}
+lang: {{ .lang }}
+{{- end }}
+```
+{{ if .desc }}
+{{ .desc }}
+{{ end }}
+```{{ if .lang }}{{ .lang }}{{ else }}raw{{ end }}
+{{ trim .input }}
+```
+

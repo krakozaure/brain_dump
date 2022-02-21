@@ -1,0 +1,11 @@
+---
+
+```yaml
+cdate: {{ .datetime }}
+{{- if .tags }}
+tags: [ {{ .tags }} ]
+{{- end }}
+```
+
+{{ .input }}
+
