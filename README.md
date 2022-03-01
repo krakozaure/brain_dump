@@ -11,14 +11,14 @@ This project is in a very early stage. Things might break !
 
 - Print help/usage message.
 
-```sh
+```bash
 $ brain_dump -h
 $ brain_dump --help
 ```
 
 - Print the default configuration to `stdout`.
 
-```sh
+```bash
 $ brain_dump -c
 ```
 
@@ -27,13 +27,13 @@ $ brain_dump -c
 Notice: if no configuration is found, the tool will print a log message
 explaining that the default configuration will be used.
 
-```sh
+```bash
 $ brain_dump the quick brown fox jumps over the lazy dog.
 ```
 
 - Dump a note without any configuration and then edit the file.
 
-```sh
+```bash
 $ brain_dump -e the quick brown fox jumps over the lazy dog.
 ```
 
@@ -64,7 +64,7 @@ Here is the default configuration ( `brain_dump -c` ) :
 
 Here is an example of bash configuration :
 
-```sh
+```bash
 if command -v brain_dump &> /dev/null; then
   alias bd=brain_dump
   alias link='brain_dump -p link'
