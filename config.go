@@ -12,7 +12,7 @@ type Formats map[string]string
 
 type Profile struct {
 	File         string            `json:"file"`
-	FileMode     string            `json:"file_mode"`
+	WriteMode    string            `json:"write_mode"`
 	TemplateFile string            `json:"template_file"`
 	TemplateVars map[string]string `json:"template_vars"`
 	Formats      Formats           `json:"formats"`
@@ -23,8 +23,8 @@ type Profile struct {
 
 func getDefaultProfile() Profile {
 	return Profile{
-		File:     "~/Documents/brain_dump.md",
-		FileMode: "append",
+		File:      "~/Documents/brain_dump.md",
+		WriteMode: "append",
 		Formats: Formats{
 			"date":     "2006-01-02",
 			"time":     "15:04:05",

@@ -47,7 +47,7 @@ Here is the default configuration ( `brain_dump -c` ) :
 {
   "default": {
     "file": "~/Documents/brain_dump.md",
-    "file_mode": "append",
+    "write_mode": "append",
     "template_file": "",
     "template_vars": null,
     "formats": {

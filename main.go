@@ -71,7 +71,7 @@ func main() {
 		fmt.Println(inpText)
 	}
 
-	if profile.FileMode == "write" {
+	if profile.WriteMode == "write" {
 		err = writeFile(outFile, inpText)
 	} else {
 		err = appendFile(outFile, inpText)
