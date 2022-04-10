@@ -54,6 +54,7 @@ func main() {
 	context = convertContextKeys(context, profile.KeysCase)
 
 	outFile = execTemplate(outFile, context)
+	ensureParentDirs(outFile)
 
 	if profile.TemplateFile != "" {
 		inpText = execFileTemplate(profile.TemplateFile, context)

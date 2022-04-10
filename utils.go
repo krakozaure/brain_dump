@@ -160,6 +160,25 @@ func execFileTemplate(path string, context interface{}) string {
 	return execTemplate(text, context)
 }
 
+func ensureParentDirs(file string) error {
+	parents := filepath.Dir(file)
+    err := os.MkdirAll(parents, 0755)
+    if err == nil {
+        return nil
+    }
+    if os.IsExist(err) {
+        info, err := os.Stat(parents)
+        if err != nil {
+            return err
+        }
+        if !info.IsDir() {
+			return fmt.Errorf("Path exists but is not a directory : '%s'", parents)
+        }
+        return nil
+    }
+    return err
+}
+
 func readStdin() []byte {
 	input, err := ioutil.ReadAll(os.Stdin)
 	if err != nil {
