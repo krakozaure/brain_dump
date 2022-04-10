@@ -48,11 +48,14 @@ func main() {
 		openEditorFlag = true
 	}
 
+	cliVars["input"] = inpText
+	context = makeContext(profile)
+	context = mergeContextMaps(context, profile.TemplateVars, cliVars)
+	context = convertContextKeys(context, profile.KeysCase)
+
+	outFile = execTemplate(outFile, context)
+
 	if profile.TemplateFile != "" {
-		cliVars["input"] = inpText
-		context = makeContext(profile)
-		context = mergeContextMaps(context, profile.TemplateVars, cliVars)
-		context = convertContextKeys(context, profile.KeysCase)
 		inpText = execFileTemplate(profile.TemplateFile, context)
 	}
 
