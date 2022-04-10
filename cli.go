@@ -65,6 +65,7 @@ func parseFlags() {
 
 INPUT must be a list of arguments or - to get the input from the STDIN.
 The input can also contains arguments using key=value format to pass variables for the template.
+If no input is given, the output file will be opened in a text editor.
 
 OPTIONS:
 `,
