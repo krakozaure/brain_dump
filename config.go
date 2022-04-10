@@ -21,6 +21,20 @@ type Profile struct {
 	EditorArgs   []string          `json:"editor_args"`
 }
 
+func getDefaultProfile() Profile {
+	return Profile{
+		File:     "~/Documents/brain_dump.md",
+		FileMode: "append",
+		Formats: Formats{
+			"date":     "2006-01-02",
+			"time":     "15:04:05",
+			"datetime": "2006-01-02 15:04:05",
+		},
+		KeysCase: "snake_case",
+		Editor:   "$EDITOR",
+	}
+}
+
 type Config map[string]Profile
 
 func (c Config) String() string {
@@ -57,22 +71,20 @@ func (c Config) getProfile(name string) Profile {
 	return profile
 }
 
-func getDefaultConfig() Config {
-	return Config{"default": getDefaultProfile()}
-}
-
-func getDefaultProfile() Profile {
-	return Profile{
-		File:     "~/Documents/brain_dump.md",
-		FileMode: "append",
-		Formats: Formats{
-			"date":     "2006-01-02",
-			"time":     "15:04:05",
-			"datetime": "2006-01-02 15:04:05",
-		},
-		KeysCase: "snake_case",
-		Editor:   "$EDITOR",
+func getConfig() Config {
+	config, err := getUserConfig()
+	if err != nil {
+		log.Println("Unable to load the configuration file. Default configuration is used.")
+		config = getDefaultConfig()
 	}
+
+	configString := expandText(config.String())
+	err = unmarshal(configString, &config)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return config
 }
 
 func getUserConfig() (Config, error) {
@@ -98,6 +110,10 @@ func getUserConfig() (Config, error) {
 	return Config{}, fmt.Errorf("Unable to find the configuration file")
 }
 
+func getDefaultConfig() Config {
+	return Config{"default": getDefaultProfile()}
+}
+
 func loadConfigFile(path string) (Config, error) {
 	config := Config{}
 
@@ -107,7 +123,7 @@ func loadConfigFile(path string) (Config, error) {
 		return config, err
 	}
 
-	err = unmarshalString(data, &config)
+	err = unmarshal(data, &config)
 	if err != nil {
 		return config, err
 	}

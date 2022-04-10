@@ -6,8 +6,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
-
-	"github.com/iancoleman/strcase"
+	"time"
 )
 
 const (
@@ -16,11 +15,7 @@ const (
 )
 
 func main() {
-	var (
-		err     error
-		inpText string
-		context map[string]string
-	)
+	var err error
 
 	parseFlags()
 
@@ -31,38 +26,37 @@ func main() {
 
 	config := getConfig()
 	profile := config.getProfile(profileNameFlag)
-
 	if profile.File == "" {
 		log.Fatal("The 'file' configuration key must be set !")
 		return
 	}
-	outFile := expandText(profile.File)
+
+	timeVars := setTimeVars(profile.Formats)
 
 	cliArgs, cliVars := extractCliVars()
-
-	inpText = ""
+	inpText := ""
 	if len(cliArgs) > 0 {
 		inpText = getInput(cliArgs)
 	}
 	if len(inpText) == 0 {
 		openEditorFlag = true
 	}
-
 	cliVars["input"] = inpText
-	context = makeContext(profile)
-	context = mergeContextMaps(context, profile.TemplateVars, cliVars)
-	context = convertContextKeys(context, profile.KeysCase)
 
-	outFile = execTemplate(outFile, context)
-	ensureParentDirs(outFile)
+	context := makeContext()
+	context = mergeContextMaps(context, timeVars, profile.TemplateVars, cliVars)
+	context = convertContextKeys(context, profile.KeysCase)
 
 	if profile.TemplateFile != "" {
 		inpText = execFileTemplate(profile.TemplateFile, context)
 	}
-
 	if !strings.HasSuffix(inpText, "\n") {
 		inpText += "\n"
 	}
+
+	outFile := expandText(profile.File)
+	outFile = execTemplate(outFile, context)
+	ensureParentDirs(outFile)
 
 	debugLevel, err := strconv.Atoi(os.Getenv("BRAINDUMP_DEBUG"))
 	if err == nil && !openEditorFlag && debugLevel > 1 {
@@ -89,7 +83,6 @@ func main() {
 	if !openEditorFlag {
 		return
 	}
-
 	if profile.Editor == "" {
 		log.Fatal("The 'editor' configuration key must be set to edit files")
 		return
@@ -98,22 +91,6 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-}
-
-func getConfig() Config {
-	config, err := getUserConfig()
-	if err != nil {
-		log.Println("Unable to load the configuration file. Default configuration is used.")
-		config = getDefaultConfig()
-	}
-
-	configString := expandText(config.String())
-	err = unmarshalString(configString, &config)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return config
 }
 
 func getInput(cliArgs []string) string {
@@ -126,24 +103,11 @@ func getInput(cliArgs []string) string {
 	return data
 }
 
-func mergeContextMaps(context map[string]string, maps ...map[string]string) map[string]string {
-	for _, currentMap := range maps {
-		for key, value := range currentMap {
-			context[key] = value
-		}
+func setTimeVars(formats map[string]string) map[string]string {
+	timeVars := make(map[string]string)
+	now := time.Now()
+	for name, format := range formats {
+		timeVars[name] = now.Format(format)
 	}
-	return context
-}
-
-func convertContextKeys(context map[string]string, keys_case string) map[string]string {
-	converter := strcase.ToSnake
-	if keys_case == "CamelCase" {
-		converter = strcase.ToCamel
-	}
-
-	newContext := make(map[string]string)
-	for key, value := range context {
-		newContext[converter(key)] = value
-	}
-	return newContext
+	return timeVars
 }
