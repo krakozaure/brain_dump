@@ -18,8 +18,18 @@ No new features are planned right now unless some users have suggestions.
 - Print help/usage message.
 
 ```bash
-$ brain_dump -h
 $ brain_dump --help
+USAGE: brain_dump [-c] [-e] [-p PROFILE] INPUT
+
+INPUT must be a list of arguments or - to get the input from the STDIN.
+The input can also contains arguments using key=value format to pass variables for the template.
+If no input is given, the output file will be opened in a text editor.
+
+OPTIONS:
+  -c    print the default configuration to STDOUT
+  -e    open the editor after writing the file
+  -p string
+        name of the profile to use (default "default")
 ```
 
 - Dump a note without any configuration or any template.
