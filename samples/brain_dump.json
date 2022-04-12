@@ -1,12 +1,12 @@
 {
   "default": {
     "editor_args": ["-c", "norm G"],
-    "file": "${HOME}/Documents/brain_dump/miscs.md",
+    "file": "${HOME}/Documents/brain_dump/miscs.txt",
     "template_file": "${HOME}/.config/brain_dump/templates/misc.tmpl"
   },
   "link": {
     "editor_args": ["-c", "norm G"],
-    "file": "${HOME}/Documents/brain_dump/miscs.md",
+    "file": "${HOME}/Documents/brain_dump/miscs.txt",
     "template_file": "${HOME}/.config/brain_dump/templates/misc.tmpl"
   },
   "note": {
