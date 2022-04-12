@@ -1,11 +1,17 @@
 # brain\_dump
 
-`brain_dump` allows to quickly write notes, todos, snippets, etc. in text files
-using Golang [text/template](https://pkg.go.dev/text/template) and functions from the [Sprig](https://masterminds.github.io/sprig/) project.
+`brain_dump` allows to quickly write notes, todos, snippets, etc. in text files.
+
+Tempate files ([Golang text/template](https://pkg.go.dev/text/template) + [sprig](https://masterminds.github.io/sprig/))
+can be used to control and format what will be written in the files.
 
 ## Project status
 
-This project is in a very early stage. Things might break !
+This project is in a very early stage.
+
+I use this tool since the beginning and got only one issue, which is fixed by now.
+
+No new features are planned right now unless some users have suggestions.
 
 ## Usage
 
@@ -22,7 +28,7 @@ $ brain_dump --help
 $ brain_dump -c
 ```
 
-- Dump a note without any configuration.
+- Dump a note without any configuration or any template.
 
 Notice: if no configuration is found, the tool will print a log message
 explaining that the default configuration will be used.
@@ -31,7 +37,7 @@ explaining that the default configuration will be used.
 $ brain_dump the quick brown fox jumps over the lazy dog.
 ```
 
-- Dump a note without any configuration and then edit the file.
+- Dump a note without any configuration or any template and then edit the file.
 
 ```bash
 $ brain_dump -e the quick brown fox jumps over the lazy dog.
