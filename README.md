@@ -71,9 +71,7 @@ if command -v brain_dump &> /dev/null; then
   alias note='brain_dump -p note'
   alias snip='brain_dump -p snip'
   alias todo='brain_dump -p todo'
-  export BRAINDUMP_CONFIG_HOME="$HOME/.config/brain_dump"
-  export BRAINDUMP_CONFIG_FILE="$BRAINDUMP_CONFIG_HOME/brain_dump.json"
-  export BRAINDUMP_DATA_HOME="$HOME/Documents/brain_dump"
+  export BRAINDUMP_CONFIG_FILE="$HOME/.config/brain_dump/brain_dump.json"
   export BRAINDUMP_DEBUG=1
 fi
 ```
