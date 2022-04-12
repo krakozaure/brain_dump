@@ -22,12 +22,6 @@ $ brain_dump -h
 $ brain_dump --help
 ```
 
-- Print the default configuration to `stdout`.
-
-```bash
-$ brain_dump -c
-```
-
 - Dump a note without any configuration or any template.
 
 Notice: if no configuration is found, the tool will print a log message
