@@ -23,8 +23,7 @@
     },
     "template_file": "${HOME}/.config/brain_dump/templates/snip.tmpl",
     "template_vars": {
-      "category": "notes",
-      "subcategory": "snippets"
+      "lang": "raw"
     }
   },
   "todo": {

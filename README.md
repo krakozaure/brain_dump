@@ -37,6 +37,39 @@ $ brain_dump the quick brown fox jumps over the lazy dog.
 $ brain_dump -e the quick brown fox jumps over the lazy dog.
 ```
 
+- Pass variables to the template file
+
+To fill the templates, the user can either add variables in a per profile
+configuration or pass them at the command line.
+
+`$HOME/.config/brain_dump/templates/snips.tmpl`
+````tmpl
+{{ if .desc }}
+{{ .desc }}
+{{ end }}
+```{{ if .lang }}{{ .lang }}{{ end }}
+{{ trim .input }}
+```
+````
+
+`$HOME/.config/brain_dump/brain_dump.json`
+```jsonc
+{
+  // ...
+  "snip": {
+    // ...
+    "template_vars": {
+      "lang": "raw"
+    }
+  },
+  // ...
+}
+```
+
+```bash
+$ brain_dump -p snip lang=bash desc="Hello World in bash" echo Hello, World
+```
+
 ## Configuration
 
 Configuration and template samples can be found in `./samples/`.
