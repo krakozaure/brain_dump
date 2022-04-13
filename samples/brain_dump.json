@@ -34,5 +34,17 @@
       "datetime": "2006-01-02 15:04"
     },
     "template_file": "${HOME}/.config/brain_dump/templates/todo.tmpl"
+  },
+  "test": {
+    "file": "${HOME}/Documents/brain_dump/test.md",
+    "template_file": "${HOME}/.config/brain_dump/templates/test.tmpl",
+    "keys_case": "CamelCase",
+    "formats": {
+      "date": "2006-01-02",
+      "datetime": "2006-01-02 15:04",
+      "time": "15:04",
+      "datetime_file": "20060102_1504"
+    },
+    "write_mode": "write"
   }
 }

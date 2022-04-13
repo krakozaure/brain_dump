@@ -1,0 +1,34 @@
+key (snake_case) | value
+--               |--
+cwd              | {{ .cwd }}
+cwd (short)      | {{ .cwd | shortenPath }}
+short_cwd        | {{ .short_cwd }}
+
+date             | {{ .date }}
+datetime         | {{ .datetime }}
+time             | {{ .time }}
+
+home             | {{ .home }}
+user             | {{ .user }}
+
+first_name       | {{ .first_name }}
+last_name        | {{ .last_name }}
+
+---
+
+key (CamelCase) | value
+--              |--
+Cwd             | {{ .Cwd }}
+Cwd (short)     | {{ .Cwd | shortenPath }}
+ShortCwd        | {{ .ShortCwd }}
+
+Date            | {{ .Date }}
+Datetime        | {{ .Datetime }}
+Time            | {{ .Time }}
+
+Home            | {{ .Home }}
+User            | {{ .User }}
+
+FirstName       | {{ .FirstName }}
+LastName        | {{ .LastName }}
+
