@@ -86,6 +86,41 @@ brain_dump use Golang text/template and sprig but it also provide predefined
 variables `cwd`, `short_cwd`, `home`, `user` and predefined functions
 `shortenPath`, `expandTilde`, `expandEnv`.
 
+- Write mode, keys case and date/time variables.
+
+1. When writing to a file, the default method is to append rather than
+overwriting. This can be modified by setting `write_mode` to `write` in the
+profile configuration.
+
+2. By default the case for variables keys in the templates is `snake_case` but
+you can also use the `CamelCase` by setting `keys_case` to `CamelCase` in the
+profile configuration. (see `./samples/templates/test.tmpl`)
+
+3. To use date/time variables the user has to provide a map to the `formats`
+key in the profile configuration. Each keys of the map is the name for the
+variable and each value is the format.
+
+Here is an example of configuration for the points mentioned above.
+
+`$HOME/.config/brain_dump/brain_dump.json`
+```jsonc
+{
+  // ...
+  "test": {
+    "file": "${HOME}/Documents/brain_dump/test.md",
+    "template_file": "${HOME}/.config/brain_dump/templates/test.tmpl",
+    "write_mode": "write"               // <-- 1.
+    "keys_case": "CamelCase",           // <-- 2.
+    "formats": {                        // <-- 3.
+      "date": "2006-01-02",
+      "datetime": "2006-01-02 15:04",
+      "time": "15:04",
+      "datetime_file": "20060102_1504"
+    },
+  }
+}
+```
+
 ## Configuration
 
 Configuration and template samples can be found in `./samples/`.
