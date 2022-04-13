@@ -112,6 +112,8 @@ func shortenPath(path string) string {
 	for _, part := range pathParts[:sepsCount] {
 		if part == "" && string(path[0]) == sep {
 			shortenedPath = sep
+		} else if string(part[0]) == "." {
+			shortenedPath += string(part[0:2]) + sep
 		} else {
 			shortenedPath += string(part[0]) + sep
 		}
