@@ -80,6 +80,12 @@ configuration or pass them at the command line.
 $ brain_dump -p snip lang=bash desc="Hello World in bash" echo Hello, World
 ```
 
+- Predefined functions and variables.
+
+brain_dump use Golang text/template and sprig but it also provide predefined
+variables `cwd`, `short_cwd`, `home`, `user` and predefined functions
+`shortenPath`, `expandTilde`, `expandEnv`.
+
 ## Configuration
 
 Configuration and template samples can be found in `./samples/`.
