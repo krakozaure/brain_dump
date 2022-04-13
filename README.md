@@ -13,9 +13,7 @@ I use this tool since the beginning and got only one issue, which is fixed by no
 
 No new features are planned right now unless some users have suggestions.
 
-## Usage
-
-- Print help/usage message.
+## Documentation
 
 ```bash
 $ brain_dump --help
@@ -32,7 +30,7 @@ OPTIONS:
         name of the profile to use (default "default")
 ```
 
-- Dump a note without any configuration or any template.
+**Dumping a note without any configuration or any template.**
 
 Notice: if no configuration is found, the tool will print a log message
 explaining that the default configuration will be used.
@@ -41,13 +39,13 @@ explaining that the default configuration will be used.
 $ brain_dump the quick brown fox jumps over the lazy dog.
 ```
 
-- Dump a note without any configuration or any template and then edit the file.
+**Dumping a note without any configuration or any template and then edit the file.**
 
 ```bash
 $ brain_dump -e the quick brown fox jumps over the lazy dog.
 ```
 
-- Pass variables to the template file
+**Passing variables to the template file.**
 
 To fill the templates, the user can either add variables in a per profile
 configuration or pass them at the command line.
@@ -80,13 +78,13 @@ configuration or pass them at the command line.
 $ brain_dump -p snip lang=bash desc="Hello World in bash" echo Hello, World
 ```
 
-- Predefined functions and variables.
+**Predefined functions and variables.**
 
 brain_dump use Golang text/template and sprig but it also provide predefined
 variables `cwd`, `short_cwd`, `home`, `user` and predefined functions
 `shortenPath`, `expandTilde`, `expandEnv`.
 
-- Write mode, keys case and date/time variables.
+**Write mode, keys case and date/time variables.**
 
 1. When writing to a file, the default method is to append rather than
 overwriting. This can be modified by setting `write_mode` to `write` in the
