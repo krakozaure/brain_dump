@@ -6,7 +6,7 @@
   },
   "link": {
     "editor_args": ["-c", "norm G"],
-    "file": "${HOME}/Documents/brain_dump/miscs.txt",
+    "file": "${HOME}/Documents/brain_dump/links.txt",
     "template_file": "${HOME}/.config/brain_dump/templates/misc.tmpl"
   },
   "note": {
